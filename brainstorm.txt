@@ -1,0 +1,68 @@
+Old fishermen could be paid to classify
+Should be in video mode
+ - clean hands
+Robust
+Find environment
+We should find ways of increasing engagement and usage
+ - ie incentives
+ - provide sim cards
+
+Reqs
+----
+< 5s classify
+classify in background
+Withstands sea
+Lack of user input
+Manual classification/proper server machine learning
+
+Implementation
+--------------
+App using opencv
+Background service to capture metrics such as location
+Main app that records fish when put into mode
+ - after record finished, produces 'trouble fish'
+Record measures length, breadth, species, (weight from metric, pitch makes hardware hard)
+Login of some kind that links user to some metadata about equipment etc
+
+Tasks
+-----
+Service bit (location tracking etc (background))
+Database
+Server version of client functionality
+Web crowd classification with voting mechanism
+Visualisations
+Main app
+ - Save to disk (persistence)
+    - Before upload
+ - Video/camera bit
+ - Classify activity
+    - if cannot auto, get user input
+ - OpenCV bit
+
+Phone call with Harry Owen - MCB Seafoods - expert
+
+Size of vessel changes thing
+Smaller have nets on deck everything open
+Bigger can be enclosed completely
+Fish in penned off area
+SORTED BY HAND
+Conveyor belts on fish
+Flood pen
+Conveyor picks them up (like water wheel)
+
+Smartphone depends (huge variation)
+Lots don't have email/smartphones
+Possible to convince them
+
+Difficult to sex fish
+Some are dimorphic (some aren't, require training)
+Not important, useful for only targeting males
+Fewer males necessary
+
+Lots of slime on fish
+
+Old fishermen depends
+Lots of money in leadline/parts of net
+"Cuttting out", "Rehanging"
+Fishermen fish until unable to continue
+Probably still able to use an app
