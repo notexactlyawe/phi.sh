@@ -11,6 +11,11 @@ FishClass::FishClass(double width_in, double length_in, double x_pos_in, double 
 }
 
 bool FishClass::IsFish()
+
 {
-  return False;
+  if (width_in.back()*length_in.back() <60*60){ 
+     // Capsize is 45*45, including some margin of error we arrive at 60
+     is_fish = False;
+     }
+     return is_fish;    
 }
