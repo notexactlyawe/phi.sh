@@ -11,10 +11,11 @@ using namespace cv;
 using namespace std;
 
 Mat src; Mat src_gray;
-int thresh = 125;
+int thresh = 103;
 int max_thresh = 255;
 RNG rng(12345);
-std::vector<FishClass> my_fish_vector;
+std::vector<FishClass> my_fish_vector; // Vector with all the recognized fishes during the movie
+std::vector<FishClass> my_fish_frame;  // Features recognized at a given frame
 
 /// Function header
 void thresh_callback(int, void*);
@@ -22,7 +23,7 @@ void thresh_callback(int, void*);
 /** @function main */
 int main( int argc, char** argv )
 {
-  char filename[] = "fish_paper.JPG";	
+  char filename[] = "stream1fish/videoframe15.jpg";	
   /// Load source image and convert it to gray
   src = imread( filename, 1 );
 
@@ -42,13 +43,13 @@ int main( int argc, char** argv )
   FishClass fishy_fish(0.3,0.2,1.1,2.4);
   my_fish_vector.push_back(fishy_fish);
 
-  waitKey(0);
   return(0);
 }
 
 /** @function thresh_callback */
 void thresh_callback(int, void*)
 {
+  my_fish_frame.clear(); // Clear before populating the current frame
   Mat threshold_output;
   vector<vector<Point> > contours;
   vector<Vec4i> hierarchy;
@@ -70,7 +71,10 @@ void thresh_callback(int, void*)
      }
   for( int i = 0; i < contours.size(); i++ )
      { 
-	//Print out the contours
+	// Instantiate a fish
+  	FishClass detected_fish(minRect[i].size.width,minRect[i].size.height,minRect[i].center.x,minRect[i].center.y );
+	my_fish_frame.push_back(detected_fish);
+	
 	// cout << Mat(contours[i])  << endl;
 	// Print rectangle
 	cout << "Dimensions: " << minRect[i].size.width << " x " << minRect[i].size.height << endl;
