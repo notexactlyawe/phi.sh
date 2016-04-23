@@ -159,12 +159,26 @@ for (int i = 0; i< my_fish_vector.size(); i++)
 	   }
 	  }
      } 
-
-}
-else{for (int j = 0; j< my_fish_frame.size(); j++) {
-	cout << "Here2" << endl;
-	my_fish_vector.push_back(my_fish_frame[j]);	
+for (int i = 0; i< my_fish_vector.size(); i++) { // identify the same fish
+	int min = *min_element(matrix[i].begin(), matrix[i].end());
+	min = *matrix[i].begin() - min;
+	if (my_fish_frame[min].y_pos[0] >= my_fish_vector[i].y_pos.back()) {
+		my_fish_vector[i].y_pos.push_back(my_fish_frame[min].y_pos[0]);
+		my_fish_vector[i].x_pos.push_back(my_fish_frame[min].x_pos[0]);
+		my_fish_vector[i].length.push_back(my_fish_frame[min].length[0]);
+		my_fish_vector[i].width.push_back(my_fish_frame[min].width[0]);
+		my_fish_frame.erase(my_fish_frame.begin()+min);
 	}
+	}
+for (int j = 0; j< my_fish_frame.size(); j++) { // push the remaining fish
+	  my_fish_vector.push_back(my_fish_frame[j]);	
+	  }
+}
+
+else{for (int j = 0; j< my_fish_frame.size(); j++) {
+	  cout << "Here2" << endl;
+	  my_fish_vector.push_back(my_fish_frame[j]);	
+	  }
 
      }
 }
