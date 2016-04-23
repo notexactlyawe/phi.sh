@@ -6,11 +6,11 @@
 
 #IncludeRegexTransform: 
 
-/home/pablo/Desktop/Hackathon/test_opencv/main_recognition.cpp
+/home/pablo/Desktop/Hackathon/phi.sh/fish_finding_opencv/main_recognition.cpp
 opencv2/highgui/highgui.hpp
-/home/pablo/Desktop/Hackathon/test_opencv/opencv2/highgui/highgui.hpp
+/home/pablo/Desktop/Hackathon/phi.sh/fish_finding_opencv/opencv2/highgui/highgui.hpp
 opencv2/imgproc/imgproc.hpp
-/home/pablo/Desktop/Hackathon/test_opencv/opencv2/imgproc/imgproc.hpp
+/home/pablo/Desktop/Hackathon/phi.sh/fish_finding_opencv/opencv2/imgproc/imgproc.hpp
 iostream
 -
 stdio.h

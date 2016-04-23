@@ -4,7 +4,7 @@ SET(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 SET(CMAKE_DEPENDS_CHECK_CXX
-  "/home/pablo/Desktop/Hackathon/test_opencv/main_recognition.cpp" "/home/pablo/Desktop/Hackathon/test_opencv/CMakeFiles/main.dir/main_recognition.cpp.o"
+  "/home/pablo/Desktop/Hackathon/phi.sh/fish_finding_opencv/main_recognition.cpp" "/home/pablo/Desktop/Hackathon/phi.sh/fish_finding_opencv/CMakeFiles/main.dir/main_recognition.cpp.o"
   )
 SET(CMAKE_CXX_COMPILER_ID "GNU")
 

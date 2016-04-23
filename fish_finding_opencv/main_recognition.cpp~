@@ -8,7 +8,7 @@ using namespace cv;
 using namespace std;
 
 Mat src; Mat src_gray;
-int thresh = 100;
+int thresh = 135;
 int max_thresh = 255;
 RNG rng(12345);
 
@@ -18,7 +18,7 @@ void thresh_callback(int, void*);
 /** @function main */
 int main( int argc, char** argv )
 {
-  char filename[] = "carp-fish.jpg";	
+  char filename[] = "fish_paper.JPG";	
   /// Load source image and convert it to gray
   src = imread( filename, 1 );
 
@@ -90,6 +90,5 @@ void thresh_callback(int, void*)
 
   /// Show in a window
   namedWindow( "Contours", CV_WINDOW_AUTOSIZE );
-  
   imshow( "Contours", drawing );
 }
