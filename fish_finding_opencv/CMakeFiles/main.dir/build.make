@@ -35,10 +35,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/pablo/Desktop/Hackathon/test_opencv
+CMAKE_SOURCE_DIR = /home/pablo/Desktop/Hackathon/phi.sh/fish_finding_opencv
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/pablo/Desktop/Hackathon/test_opencv
+CMAKE_BINARY_DIR = /home/pablo/Desktop/Hackathon/phi.sh/fish_finding_opencv
 
 # Include any dependencies generated for this target.
 include CMakeFiles/main.dir/depend.make
@@ -51,17 +51,17 @@ include CMakeFiles/main.dir/flags.make
 
 CMakeFiles/main.dir/main_recognition.cpp.o: CMakeFiles/main.dir/flags.make
 CMakeFiles/main.dir/main_recognition.cpp.o: main_recognition.cpp
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/pablo/Desktop/Hackathon/test_opencv/CMakeFiles $(CMAKE_PROGRESS_1)
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/pablo/Desktop/Hackathon/phi.sh/fish_finding_opencv/CMakeFiles $(CMAKE_PROGRESS_1)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/main.dir/main_recognition.cpp.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/main.dir/main_recognition.cpp.o -c /home/pablo/Desktop/Hackathon/test_opencv/main_recognition.cpp
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/main.dir/main_recognition.cpp.o -c /home/pablo/Desktop/Hackathon/phi.sh/fish_finding_opencv/main_recognition.cpp
 
 CMakeFiles/main.dir/main_recognition.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/main.dir/main_recognition.cpp.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/pablo/Desktop/Hackathon/test_opencv/main_recognition.cpp > CMakeFiles/main.dir/main_recognition.cpp.i
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/pablo/Desktop/Hackathon/phi.sh/fish_finding_opencv/main_recognition.cpp > CMakeFiles/main.dir/main_recognition.cpp.i
 
 CMakeFiles/main.dir/main_recognition.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/main.dir/main_recognition.cpp.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/pablo/Desktop/Hackathon/test_opencv/main_recognition.cpp -o CMakeFiles/main.dir/main_recognition.cpp.s
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/pablo/Desktop/Hackathon/phi.sh/fish_finding_opencv/main_recognition.cpp -o CMakeFiles/main.dir/main_recognition.cpp.s
 
 CMakeFiles/main.dir/main_recognition.cpp.o.requires:
 .PHONY : CMakeFiles/main.dir/main_recognition.cpp.o.requires
@@ -122,6 +122,6 @@ CMakeFiles/main.dir/clean:
 .PHONY : CMakeFiles/main.dir/clean
 
 CMakeFiles/main.dir/depend:
-	cd /home/pablo/Desktop/Hackathon/test_opencv && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/pablo/Desktop/Hackathon/test_opencv /home/pablo/Desktop/Hackathon/test_opencv /home/pablo/Desktop/Hackathon/test_opencv /home/pablo/Desktop/Hackathon/test_opencv /home/pablo/Desktop/Hackathon/test_opencv/CMakeFiles/main.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/pablo/Desktop/Hackathon/phi.sh/fish_finding_opencv && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/pablo/Desktop/Hackathon/phi.sh/fish_finding_opencv /home/pablo/Desktop/Hackathon/phi.sh/fish_finding_opencv /home/pablo/Desktop/Hackathon/phi.sh/fish_finding_opencv /home/pablo/Desktop/Hackathon/phi.sh/fish_finding_opencv /home/pablo/Desktop/Hackathon/phi.sh/fish_finding_opencv/CMakeFiles/main.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/main.dir/depend
 
