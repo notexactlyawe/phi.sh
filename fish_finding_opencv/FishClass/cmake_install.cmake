@@ -1,4 +1,4 @@
-# Install script for directory: /home/pablo/Desktop/Hackathon/phi.sh/fish_finding_opencv/FishClass
+# Install script for directory: /home/yuki/phi.sh/fish_finding_opencv/FishClass
 
 # Set the install prefix
 IF(NOT DEFINED CMAKE_INSTALL_PREFIX)

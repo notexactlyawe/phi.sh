@@ -23,7 +23,7 @@ public:
 	std::vector<double> x_expected_range;
 	// (ymin, ymax)
 	std::vector<double> y_expected_range;
-	bool is_fish = True;
+	bool is_fish;
 
 public:
 // our constructor

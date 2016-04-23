@@ -23,12 +23,13 @@ std::vector<FishClass> my_fish_frame;  // Features recognized at a given frame
 
 /// Function header
 void thresh_callback(int, void*);
+void update_fish_list();
 
 /** @function main */
 int main( int argc, char** argv )
 {
   
-for(int frame_idx =15; frame_idx < 30; frame_idx++)
+for(int frame_idx =16; frame_idx < 19; frame_idx++)
   {
   int idx = frame_idx;
   ostringstream s;
@@ -50,6 +51,7 @@ for(int frame_idx =15; frame_idx < 30; frame_idx++)
 
   //createTrackbar( " Threshold:", "Source", &thresh, max_thresh, thresh_callback );
   thresh_callback( 0, 0);
+  //update_fish_list();
 
 	// Example to dump data to file
   ofstream output (out_filename.c_str());
@@ -61,6 +63,7 @@ for(int frame_idx =15; frame_idx < 30; frame_idx++)
 			output << my_fish_frame[k].width[0] << "," << my_fish_frame[k].length[0] << "," << my_fish_frame[k].x_pos[0] <<","<<  my_fish_frame[k].y_pos[0] << endl;		
 		}
 	}
+  
   output.close();
 
 }
@@ -127,4 +130,31 @@ void thresh_callback(int, void*)
   /// Show in a window
   namedWindow( "Contours", CV_WINDOW_AUTOSIZE );
   imshow( "Contours", drawing );
+}
+
+void update_fish_list() {
+cout << "here";
+/*
+if (my_fish_vector.empty()!=true){
+cout << "here"; //my_fish_frame.size() << " " << my_fish_vector.size();
+vector< vector<double> > matrix(my_fish_vector.size(), vector<double>(my_fish_frame.size()));
+//std::vector<double> matrix(my_fish_vector.size(), std::vector<double>(my_fish_frame.size(),0.0));
+//std::vector<double> vector1;
+//std::vector<double> vector2;
+for (int i = 0; i< my_fish_vector.size(); i++)
+    { 
+      for (int j = 0; j< my_fish_frame.size(); j++)
+      {if (my_fish_frame[j].y_pos[0]> my_fish_vector[i].y_pos.back()) 
+	   { matrix[i][j] = 2.0;
+	     cout << i<<" "<<j<<" "<< matrix[i][j];
+		}
+	}
+     } 
+
+}
+else{for (int j = 0; j< my_fish_frame.size(); j++) {
+	my_fish_vector.push_back(my_fish_frame[j]);	
+	}
+
+     } */
 }
