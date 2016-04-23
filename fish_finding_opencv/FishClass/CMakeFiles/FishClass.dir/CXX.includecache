@@ -6,15 +6,15 @@
 
 #IncludeRegexTransform: 
 
-/home/yuki/phi.sh/fish_finding_opencv/FishClass/FishClass.cpp
+/home/pablo/Desktop/Hackathon/phi.sh/fish_finding_opencv/FishClass/FishClass.cpp
 FishClass.h
-/home/yuki/phi.sh/fish_finding_opencv/FishClass/FishClass.h
+/home/pablo/Desktop/Hackathon/phi.sh/fish_finding_opencv/FishClass/FishClass.h
 iostream
 -
 vector
 -
 
-/home/yuki/phi.sh/fish_finding_opencv/FishClass/FishClass.h
+/home/pablo/Desktop/Hackathon/phi.sh/fish_finding_opencv/FishClass/FishClass.h
 iostream
 -
 vector

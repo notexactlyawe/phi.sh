@@ -29,7 +29,7 @@ void update_fish_list();
 int main( int argc, char** argv )
 {
   
-for(int frame_idx =16; frame_idx < 19; frame_idx++)
+for(int frame_idx =18; frame_idx < 22; frame_idx++)
   {
   int idx = frame_idx;
   ostringstream s;
@@ -51,7 +51,7 @@ for(int frame_idx =16; frame_idx < 19; frame_idx++)
 
   //createTrackbar( " Threshold:", "Source", &thresh, max_thresh, thresh_callback );
   thresh_callback( 0, 0);
-  //update_fish_list();
+  update_fish_list();
 
 	// Example to dump data to file
   ofstream output (out_filename.c_str());
@@ -102,7 +102,13 @@ void thresh_callback(int, void*)
      { 
 	// Instantiate a fish
   	FishClass detected_fish(minRect[i].size.width,minRect[i].size.height,minRect[i].center.x,minRect[i].center.y );
-	my_fish_frame.push_back(detected_fish);
+	
+	if(detected_fish.is_fish) {
+		my_fish_frame.push_back(detected_fish);
+		cout << "fish added" << endl;		
+					}
+	else 
+		cout << "NOTHING TO REPORT" << endl;
 	
 	// cout << Mat(contours[i])  << endl;
 	// Print rectangle
@@ -133,28 +139,32 @@ void thresh_callback(int, void*)
 }
 
 void update_fish_list() {
-cout << "here";
-/*
+cout << "Updating fish list ..."<< endl;
+
 if (my_fish_vector.empty()!=true){
-cout << "here"; //my_fish_frame.size() << " " << my_fish_vector.size();
+cout << "Fish vector of size " << my_fish_vector.size() <<"; in frame currently "<< my_fish_frame.size() << endl;
 vector< vector<double> > matrix(my_fish_vector.size(), vector<double>(my_fish_frame.size()));
 //std::vector<double> matrix(my_fish_vector.size(), std::vector<double>(my_fish_frame.size(),0.0));
 //std::vector<double> vector1;
 //std::vector<double> vector2;
 for (int i = 0; i< my_fish_vector.size(); i++)
     { 
-      for (int j = 0; j< my_fish_frame.size(); j++)
-      {if (my_fish_frame[j].y_pos[0]> my_fish_vector[i].y_pos.back()) 
-	   { matrix[i][j] = 2.0;
-	     cout << i<<" "<<j<<" "<< matrix[i][j];
-		}
+      for (int j = 0; j < my_fish_frame.size(); j++)
+      {
+	cout << "In loop..." << my_fish_frame[j].y_pos[0] << "   " <<my_fish_vector[i].y_pos.back()<< endl;
+	if (my_fish_frame[j].y_pos[0] <=my_fish_vector[i].y_pos.back()) 
+	   {
+	    matrix[i][j] = 2.0;
+	    cout << i<<" "<<j<<" "<< matrix[i][j];
+	}
 	}
      } 
 
 }
 else{for (int j = 0; j< my_fish_frame.size(); j++) {
+	cout << "Here2" << endl;
 	my_fish_vector.push_back(my_fish_frame[j]);	
 	}
 
-     } */
+     }
 }
