@@ -10,7 +10,7 @@
 #include <fstream>
 #include <sstream>
 #include <string>
-
+#include <cmath>
 using namespace cv;
 using namespace std;
 
@@ -29,7 +29,7 @@ void update_fish_list();
 int main( int argc, char** argv )
 {
   
-for(int frame_idx =18; frame_idx < 22; frame_idx++)
+for(int frame_idx =22; frame_idx < 26; frame_idx++)
   {
   int idx = frame_idx;
   ostringstream s;
@@ -151,13 +151,13 @@ for (int i = 0; i< my_fish_vector.size(); i++)
     { 
       for (int j = 0; j < my_fish_frame.size(); j++)
       {
-	cout << "In loop..." << my_fish_frame[j].y_pos[0] << "   " <<my_fish_vector[i].y_pos.back()<< endl;
-	if (my_fish_frame[j].y_pos[0] <=my_fish_vector[i].y_pos.back()) 
+	//cout << "In loop..." << my_fish_frame[j].y_pos[0] << "   " <<my_fish_vector[i].y_pos.back()<< endl;
+	if (my_fish_frame[j].y_pos[0] >=my_fish_vector[i].y_pos.back()) 
 	   {
-	    matrix[i][j] = 2.0;
-	    cout << i<<" "<<j<<" "<< matrix[i][j];
-	}
-	}
+	    matrix[i][j] = pow(my_fish_frame[j].y_pos[0] - my_fish_vector[i].y_pos.back(), 2) + pow(my_fish_frame[j].x_pos[0] - my_fish_vector[i].x_pos.back(), 2);
+	    cout << i<<"00000000000000000000000000000000"<<j<<" "<< sqrt(matrix[i][j])<< endl;
+	   }
+	  }
      } 
 
 }
