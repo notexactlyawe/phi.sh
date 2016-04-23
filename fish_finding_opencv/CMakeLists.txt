@@ -1,5 +1,6 @@
 cmake_minimum_required(VERSION 2.8)
 project( DisplayImage )
 find_package( OpenCV REQUIRED )
+add_subdirectory(FishClass)
 add_executable( main main_recognition.cpp )
-target_link_libraries( main ${OpenCV_LIBS} )
+target_link_libraries( main ${OpenCV_LIBS} FishClass)

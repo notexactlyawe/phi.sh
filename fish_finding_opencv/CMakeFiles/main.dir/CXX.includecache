@@ -6,6 +6,12 @@
 
 #IncludeRegexTransform: 
 
+/home/pablo/Desktop/Hackathon/phi.sh/fish_finding_opencv/FishClass/FishClass.h
+iostream
+-
+vector
+-
+
 /home/pablo/Desktop/Hackathon/phi.sh/fish_finding_opencv/main_recognition.cpp
 opencv2/highgui/highgui.hpp
 /home/pablo/Desktop/Hackathon/phi.sh/fish_finding_opencv/opencv2/highgui/highgui.hpp
@@ -13,10 +19,14 @@ opencv2/imgproc/imgproc.hpp
 /home/pablo/Desktop/Hackathon/phi.sh/fish_finding_opencv/opencv2/imgproc/imgproc.hpp
 iostream
 -
+vector
+-
 stdio.h
 -
 stdlib.h
 -
+FishClass/FishClass.h
+/home/pablo/Desktop/Hackathon/phi.sh/fish_finding_opencv/FishClass/FishClass.h
 
 /usr/local/include/opencv/cxcore.h
 opencv2/core/core_c.h

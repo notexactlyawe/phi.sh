@@ -97,6 +97,7 @@ main: /usr/local/lib/libopencv_flann.so.3.1.0
 main: /usr/local/lib/libopencv_features2d.so.3.1.0
 main: /usr/local/lib/libopencv_core.so.3.1.0
 main: /usr/local/lib/libopencv_calib3d.so.3.1.0
+main: FishClass/libFishClass.a
 main: /usr/local/lib/libopencv_features2d.so.3.1.0
 main: /usr/local/lib/libopencv_ml.so.3.1.0
 main: /usr/local/lib/libopencv_highgui.so.3.1.0

@@ -1,8 +1,11 @@
 #include "opencv2/highgui/highgui.hpp"
 #include "opencv2/imgproc/imgproc.hpp"
 #include <iostream>
+#include <vector>
+
 #include <stdio.h>
 #include <stdlib.h>
+#include "FishClass/FishClass.h"
 
 using namespace cv;
 using namespace std;
@@ -11,6 +14,7 @@ Mat src; Mat src_gray;
 int thresh = 125;
 int max_thresh = 255;
 RNG rng(12345);
+std::vector<FishClass> my_fish_vector;
 
 /// Function header
 void thresh_callback(int, void*);
@@ -32,13 +36,15 @@ int main( int argc, char** argv )
   imshow( source_window, src );
 
   //createTrackbar( " Threshold:", "Source", &thresh, max_thresh, thresh_callback );
-  thresh_callback( 0, 0 );
+  thresh_callback( 0, 0);
+
+  // Toy fish
+  FishClass fishy_fish(0.3,0.2,1.1,2.4);
+  my_fish_vector.push_back(fishy_fish);
 
   waitKey(0);
   return(0);
 }
-
-
 
 /** @function thresh_callback */
 void thresh_callback(int, void*)
