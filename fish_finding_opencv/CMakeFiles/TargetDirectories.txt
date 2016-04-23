@@ -1,1 +1,2 @@
+/home/pablo/Desktop/Hackathon/phi.sh/fish_finding_opencv/FishClass/CMakeFiles/FishClass.dir
 /home/pablo/Desktop/Hackathon/phi.sh/fish_finding_opencv/CMakeFiles/main.dir

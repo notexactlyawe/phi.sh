@@ -1,0 +1,22 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/pablo/Desktop/Hackathon/phi.sh/fish_finding_opencv/FishClass/FishClass.cpp
+FishClass.h
+/home/pablo/Desktop/Hackathon/phi.sh/fish_finding_opencv/FishClass/FishClass.h
+iostream
+-
+vector
+-
+
+/home/pablo/Desktop/Hackathon/phi.sh/fish_finding_opencv/FishClass/FishClass.h
+iostream
+-
+vector
+-
+

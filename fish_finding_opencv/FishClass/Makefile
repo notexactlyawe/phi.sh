@@ -69,14 +69,14 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/pablo/Desktop/Hackathon/phi.sh/fish_finding_opencv/CMakeFiles /home/pablo/Desktop/Hackathon/phi.sh/fish_finding_opencv/CMakeFiles/progress.marks
-	$(MAKE) -f CMakeFiles/Makefile2 all
+	cd /home/pablo/Desktop/Hackathon/phi.sh/fish_finding_opencv && $(CMAKE_COMMAND) -E cmake_progress_start /home/pablo/Desktop/Hackathon/phi.sh/fish_finding_opencv/CMakeFiles /home/pablo/Desktop/Hackathon/phi.sh/fish_finding_opencv/FishClass/CMakeFiles/progress.marks
+	cd /home/pablo/Desktop/Hackathon/phi.sh/fish_finding_opencv && $(MAKE) -f CMakeFiles/Makefile2 FishClass/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/pablo/Desktop/Hackathon/phi.sh/fish_finding_opencv/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
 clean:
-	$(MAKE) -f CMakeFiles/Makefile2 clean
+	cd /home/pablo/Desktop/Hackathon/phi.sh/fish_finding_opencv && $(MAKE) -f CMakeFiles/Makefile2 FishClass/clean
 .PHONY : clean
 
 # The main clean target
@@ -85,68 +85,56 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	$(MAKE) -f CMakeFiles/Makefile2 preinstall
+	cd /home/pablo/Desktop/Hackathon/phi.sh/fish_finding_opencv && $(MAKE) -f CMakeFiles/Makefile2 FishClass/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	$(MAKE) -f CMakeFiles/Makefile2 preinstall
+	cd /home/pablo/Desktop/Hackathon/phi.sh/fish_finding_opencv && $(MAKE) -f CMakeFiles/Makefile2 FishClass/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
-	$(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
+	cd /home/pablo/Desktop/Hackathon/phi.sh/fish_finding_opencv && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
-#=============================================================================
-# Target rules for targets named main
+# Convenience name for target.
+FishClass/CMakeFiles/FishClass.dir/rule:
+	cd /home/pablo/Desktop/Hackathon/phi.sh/fish_finding_opencv && $(MAKE) -f CMakeFiles/Makefile2 FishClass/CMakeFiles/FishClass.dir/rule
+.PHONY : FishClass/CMakeFiles/FishClass.dir/rule
 
-# Build rule for target.
-main: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 main
-.PHONY : main
-
-# fast build rule for target.
-main/fast:
-	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/build
-.PHONY : main/fast
-
-#=============================================================================
-# Target rules for targets named FishClass
-
-# Build rule for target.
-FishClass: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 FishClass
+# Convenience name for target.
+FishClass: FishClass/CMakeFiles/FishClass.dir/rule
 .PHONY : FishClass
 
 # fast build rule for target.
 FishClass/fast:
-	$(MAKE) -f FishClass/CMakeFiles/FishClass.dir/build.make FishClass/CMakeFiles/FishClass.dir/build
+	cd /home/pablo/Desktop/Hackathon/phi.sh/fish_finding_opencv && $(MAKE) -f FishClass/CMakeFiles/FishClass.dir/build.make FishClass/CMakeFiles/FishClass.dir/build
 .PHONY : FishClass/fast
 
-main_recognition.o: main_recognition.cpp.o
-.PHONY : main_recognition.o
+FishClass.o: FishClass.cpp.o
+.PHONY : FishClass.o
 
 # target to build an object file
-main_recognition.cpp.o:
-	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/main_recognition.cpp.o
-.PHONY : main_recognition.cpp.o
+FishClass.cpp.o:
+	cd /home/pablo/Desktop/Hackathon/phi.sh/fish_finding_opencv && $(MAKE) -f FishClass/CMakeFiles/FishClass.dir/build.make FishClass/CMakeFiles/FishClass.dir/FishClass.cpp.o
+.PHONY : FishClass.cpp.o
 
-main_recognition.i: main_recognition.cpp.i
-.PHONY : main_recognition.i
+FishClass.i: FishClass.cpp.i
+.PHONY : FishClass.i
 
 # target to preprocess a source file
-main_recognition.cpp.i:
-	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/main_recognition.cpp.i
-.PHONY : main_recognition.cpp.i
+FishClass.cpp.i:
+	cd /home/pablo/Desktop/Hackathon/phi.sh/fish_finding_opencv && $(MAKE) -f FishClass/CMakeFiles/FishClass.dir/build.make FishClass/CMakeFiles/FishClass.dir/FishClass.cpp.i
+.PHONY : FishClass.cpp.i
 
-main_recognition.s: main_recognition.cpp.s
-.PHONY : main_recognition.s
+FishClass.s: FishClass.cpp.s
+.PHONY : FishClass.s
 
 # target to generate assembly for a file
-main_recognition.cpp.s:
-	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/main_recognition.cpp.s
-.PHONY : main_recognition.cpp.s
+FishClass.cpp.s:
+	cd /home/pablo/Desktop/Hackathon/phi.sh/fish_finding_opencv && $(MAKE) -f FishClass/CMakeFiles/FishClass.dir/build.make FishClass/CMakeFiles/FishClass.dir/FishClass.cpp.s
+.PHONY : FishClass.cpp.s
 
 # Help Target
 help:
@@ -154,13 +142,12 @@ help:
 	@echo "... all (the default if no target is provided)"
 	@echo "... clean"
 	@echo "... depend"
-	@echo "... edit_cache"
-	@echo "... main"
-	@echo "... rebuild_cache"
 	@echo "... FishClass"
-	@echo "... main_recognition.o"
-	@echo "... main_recognition.i"
-	@echo "... main_recognition.s"
+	@echo "... edit_cache"
+	@echo "... rebuild_cache"
+	@echo "... FishClass.o"
+	@echo "... FishClass.i"
+	@echo "... FishClass.s"
 .PHONY : help
 
 
@@ -172,6 +159,6 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	$(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
+	cd /home/pablo/Desktop/Hackathon/phi.sh/fish_finding_opencv && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 

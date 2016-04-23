@@ -1,0 +1,2 @@
+/usr/bin/ar cr libFishClass.a  CMakeFiles/FishClass.dir/FishClass.cpp.o
+/usr/bin/ranlib libFishClass.a

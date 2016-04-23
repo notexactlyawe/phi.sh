@@ -56,10 +56,10 @@ CMAKE_BINARY_DIR = /home/pablo/Desktop/Hackathon/phi.sh/fish_finding_opencv
 # Target rules for target CMakeFiles/main.dir
 
 # All Build rule for target.
-CMakeFiles/main.dir/all:
+CMakeFiles/main.dir/all: FishClass/CMakeFiles/FishClass.dir/all
 	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/depend
 	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/build
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/pablo/Desktop/Hackathon/phi.sh/fish_finding_opencv/CMakeFiles  1
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/pablo/Desktop/Hackathon/phi.sh/fish_finding_opencv/CMakeFiles  2
 	@echo "Built target main"
 .PHONY : CMakeFiles/main.dir/all
 
@@ -69,7 +69,7 @@ all: CMakeFiles/main.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/main.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/pablo/Desktop/Hackathon/phi.sh/fish_finding_opencv/CMakeFiles 1
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/pablo/Desktop/Hackathon/phi.sh/fish_finding_opencv/CMakeFiles 2
 	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/main.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/pablo/Desktop/Hackathon/phi.sh/fish_finding_opencv/CMakeFiles 0
 .PHONY : CMakeFiles/main.dir/rule
@@ -85,6 +85,56 @@ CMakeFiles/main.dir/clean:
 
 # clean rule for target.
 clean: CMakeFiles/main.dir/clean
+.PHONY : clean
+
+#=============================================================================
+# Directory level rules for directory FishClass
+
+# Convenience name for "all" pass in the directory.
+FishClass/all: FishClass/CMakeFiles/FishClass.dir/all
+.PHONY : FishClass/all
+
+# Convenience name for "clean" pass in the directory.
+FishClass/clean: FishClass/CMakeFiles/FishClass.dir/clean
+.PHONY : FishClass/clean
+
+# Convenience name for "preinstall" pass in the directory.
+FishClass/preinstall:
+.PHONY : FishClass/preinstall
+
+#=============================================================================
+# Target rules for target FishClass/CMakeFiles/FishClass.dir
+
+# All Build rule for target.
+FishClass/CMakeFiles/FishClass.dir/all:
+	$(MAKE) -f FishClass/CMakeFiles/FishClass.dir/build.make FishClass/CMakeFiles/FishClass.dir/depend
+	$(MAKE) -f FishClass/CMakeFiles/FishClass.dir/build.make FishClass/CMakeFiles/FishClass.dir/build
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/pablo/Desktop/Hackathon/phi.sh/fish_finding_opencv/CMakeFiles  1
+	@echo "Built target FishClass"
+.PHONY : FishClass/CMakeFiles/FishClass.dir/all
+
+# Include target in all.
+all: FishClass/CMakeFiles/FishClass.dir/all
+.PHONY : all
+
+# Build rule for subdir invocation for target.
+FishClass/CMakeFiles/FishClass.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/pablo/Desktop/Hackathon/phi.sh/fish_finding_opencv/CMakeFiles 1
+	$(MAKE) -f CMakeFiles/Makefile2 FishClass/CMakeFiles/FishClass.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/pablo/Desktop/Hackathon/phi.sh/fish_finding_opencv/CMakeFiles 0
+.PHONY : FishClass/CMakeFiles/FishClass.dir/rule
+
+# Convenience name for target.
+FishClass: FishClass/CMakeFiles/FishClass.dir/rule
+.PHONY : FishClass
+
+# clean rule for target.
+FishClass/CMakeFiles/FishClass.dir/clean:
+	$(MAKE) -f FishClass/CMakeFiles/FishClass.dir/build.make FishClass/CMakeFiles/FishClass.dir/clean
+.PHONY : FishClass/CMakeFiles/FishClass.dir/clean
+
+# clean rule for target.
+clean: FishClass/CMakeFiles/FishClass.dir/clean
 .PHONY : clean
 
 #=============================================================================

@@ -176,6 +176,9 @@ DisplayImage_BINARY_DIR:STATIC=/home/pablo/Desktop/Hackathon/phi.sh/fish_finding
 //Value Computed by CMake
 DisplayImage_SOURCE_DIR:STATIC=/home/pablo/Desktop/Hackathon/phi.sh/fish_finding_opencv
 
+//Dependencies for target
+FishClass_LIB_DEPENDS:STATIC=
+
 //Path where debug 3rdparty OpenCV dependencies are located
 OpenCV_3RDPARTY_LIB_DIR_DBG:PATH=/usr/local/share/OpenCV/3rdparty/lib
 
@@ -284,7 +287,7 @@ CMAKE_MODULE_LINKER_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_NM
 CMAKE_NM-ADVANCED:INTERNAL=1
 //number of local generators
-CMAKE_NUMBER_OF_LOCAL_GENERATORS:INTERNAL=1
+CMAKE_NUMBER_OF_LOCAL_GENERATORS:INTERNAL=2
 //ADVANCED property for variable: CMAKE_OBJCOPY
 CMAKE_OBJCOPY-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_OBJDUMP
