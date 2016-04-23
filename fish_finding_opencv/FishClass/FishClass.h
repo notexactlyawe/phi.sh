@@ -23,6 +23,7 @@ public:
 	std::vector<double> x_expected_range;
 	// (ymin, ymax)
 	std::vector<double> y_expected_range;
+	bool is_fish = True;
 
 public:
 // our constructor
@@ -35,6 +36,9 @@ Instantiate a fish with the known data from the image
 
 /*! Give a possible location for the next frame to help the ID process... */
   void FindExpectedRange();
+
+/*! Check if is fish or noise (if size is large enough) */
+  bool IsFish();
 
   /*!Destructor */
   ~FishClass(){};

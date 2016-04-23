@@ -34,7 +34,10 @@ Instantiate a fish with the known data from the image
   FishClass(double width_in, double length_in, double x_pos_in, double y_pos_in);
 
 /*! Give a possible location for the next frame to help the ID process... */
-  FindExpectedRange();
+  void FindExpectedRange();
+
+/*! Check if is fish or noise (if size is large enough) */
+  bool IsFish();
 
   /*!Destructor */
   ~FishClass(){};

@@ -10,3 +10,7 @@ FishClass::FishClass(double width_in, double length_in, double x_pos_in, double 
 	y_pos.push_back(y_pos_in);
 }
 
+bool FishClass::IsFish()
+{
+  return False;
+}

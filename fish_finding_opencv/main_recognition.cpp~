@@ -6,6 +6,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "FishClass/FishClass.h"
+#include <iostream>
+#include <fstream>
+#include <sstream>
+#include <string>
 
 using namespace cv;
 using namespace std;
@@ -23,9 +27,17 @@ void thresh_callback(int, void*);
 /** @function main */
 int main( int argc, char** argv )
 {
+  
+for(int frame_idx =15; frame_idx < 30; frame_idx++)
+  {
+  int idx = frame_idx;
+  ostringstream s;
+  s << idx;
+  string str_filename = "stream1fish/videoframe" + s.str() + ".jpg";
+  string out_filename = "output" + s.str() + ".txt";
   char filename[] = "stream1fish/videoframe15.jpg";	
   /// Load source image and convert it to gray
-  src = imread( filename, 1 );
+  src = imread( str_filename.c_str(), 1 );
 
   /// Convert image to gray and blur it
   cvtColor( src, src_gray, CV_BGR2GRAY );
@@ -39,9 +51,23 @@ int main( int argc, char** argv )
   //createTrackbar( " Threshold:", "Source", &thresh, max_thresh, thresh_callback );
   thresh_callback( 0, 0);
 
+	// Example to dump data to file
+  ofstream output (out_filename.c_str());
+  if (output.is_open()) 
+	{
+		for(int k =0; k<my_fish_frame.size();k++)
+		{
+			//output << to_string(my_fish_frame[k].width) << "," << to_string(my_fish_frame[k].length) << endl;
+			output << my_fish_frame[k].width[0] << "," << my_fish_frame[k].length[0] << "," << my_fish_frame[k].x_pos[0] <<","  my_fish_frame[k].y_pos[0] << endl;		
+		}
+	}
+  output.close();
+
+}
+
   // Toy fish
-  FishClass fishy_fish(0.3,0.2,1.1,2.4);
-  my_fish_vector.push_back(fishy_fish);
+  //FishClass fishy_fish(0.3,0.2,1.1,2.4);
+  //my_fish_vector.push_back(fishy_fish);
 
   return(0);
 }
@@ -49,6 +75,7 @@ int main( int argc, char** argv )
 /** @function thresh_callback */
 void thresh_callback(int, void*)
 {
+  my_fish_frame.clear(); // Clear before populating the current frame
   Mat threshold_output;
   vector<vector<Point> > contours;
   vector<Vec4i> hierarchy;

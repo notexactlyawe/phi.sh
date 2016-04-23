@@ -27,6 +27,14 @@ stdlib.h
 -
 FishClass/FishClass.h
 /home/pablo/Desktop/Hackathon/phi.sh/fish_finding_opencv/FishClass/FishClass.h
+iostream
+-
+fstream
+-
+sstream
+-
+string
+-
 
 /usr/local/include/opencv/cxcore.h
 opencv2/core/core_c.h
