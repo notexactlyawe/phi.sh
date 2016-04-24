@@ -4,18 +4,16 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     >
-    <FrameLayout
-        android:id="@+id/camera_preview"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:layout_weight="1"
-        />
-
     <Button
-        android:id="@+id/button_capture"
-        android:text="Capture"
+    android:id="@+id/stopRecButton"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Stop Rec" />
+
+    <TextureView
+        android:id="@+id/textureView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        />
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true" />
 </LinearLayout>
