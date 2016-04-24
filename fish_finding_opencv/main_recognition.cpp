@@ -72,6 +72,13 @@ cout << "-------------" << str_filename.c_str() << " ------------" <<endl;
   // Toy fish
   //FishClass fishy_fish(0.3,0.2,1.1,2.4);
   //my_fish_vector.push_back(fishy_fish);
+for (int k=0; k<my_fish_vector.size();k++)
+	{
+	for(int j=0; j<my_fish_vector[k].x_pos.size();j++)
+{
+cout << my_fish_vector[k].x_pos[j] << "  " << my_fish_vector[k].y_pos[j] <<"  " << my_fish_vector[k].width[j] << "  " << my_fish_vector[k].length[j] <<"  " << endl;
+}
+	}
 
   return(0);
 }
