@@ -15,7 +15,7 @@ using namespace cv;
 using namespace std;
 
 Mat src; Mat src_gray;
-int thresh = 103;
+int thresh = 95;
 int max_thresh = 255;
 RNG rng(12345);
 std::vector<FishClass> my_fish_vector; // Vector with all the recognized fishes during the movie
@@ -29,17 +29,17 @@ void update_fish_list();
 int main( int argc, char** argv )
 {
   
-for(int frame_idx =22; frame_idx < 26; frame_idx++)
+for(int frame_idx =21; frame_idx < 30; frame_idx++)
   {
   int idx = frame_idx;
   ostringstream s;
   s << idx;
-  string str_filename = "stream1fish/videoframe" + s.str() + ".jpg";
+  string str_filename = "stream3fish/videoframe" + s.str() + ".jpg";
   string out_filename = "output" + s.str() + ".txt";
   char filename[] = "stream1fish/videoframe15.jpg";	
   /// Load source image and convert it to gray
   src = imread( str_filename.c_str(), 1 );
-
+cout << "-------------" << str_filename.c_str() << " ------------" <<endl;
   /// Convert image to gray and blur it
   cvtColor( src, src_gray, CV_BGR2GRAY );
   blur( src_gray, src_gray, Size(3,3) );
@@ -50,6 +50,7 @@ for(int frame_idx =22; frame_idx < 26; frame_idx++)
   imshow( source_window, src );
 
   //createTrackbar( " Threshold:", "Source", &thresh, max_thresh, thresh_callback );
+  //waitKey(0);
   thresh_callback( 0, 0);
   update_fish_list();
 
@@ -105,16 +106,16 @@ void thresh_callback(int, void*)
 	
 	if(detected_fish.is_fish) {
 		my_fish_frame.push_back(detected_fish);
-		cout << "fish added" << endl;		
+	
 					}
 	else 
-		cout << "NOTHING TO REPORT" << endl;
+		cout << "Nothing to report" << endl;
 	
 	// cout << Mat(contours[i])  << endl;
 	// Print rectangle
-	cout << "Dimensions: " << minRect[i].size.width << " x " << minRect[i].size.height << endl;
+	//cout << "Dimensions: " << minRect[i].size.width << " x " << minRect[i].size.height << endl;
 	// Location
-	cout << "Loction: (" << minRect[i].center.x << ", " << minRect[i].center.y << ")" << endl;
+	//cout << "Loction: (" << minRect[i].center.x << ", " << minRect[i].center.y << ")" << endl;
      }
 
   /// Draw contours + rotated rects + ellipses
@@ -143,32 +144,41 @@ cout << "Updating fish list ..."<< endl;
 
 if (my_fish_vector.empty()!=true){
 cout << "Fish vector of size " << my_fish_vector.size() <<"; in frame currently "<< my_fish_frame.size() << endl;
-vector< vector<double> > matrix(my_fish_vector.size(), vector<double>(my_fish_frame.size()));
-//std::vector<double> matrix(my_fish_vector.size(), std::vector<double>(my_fish_frame.size(),0.0));
+vector< vector<double> > matrix(my_fish_vector.size(), vector<double>(my_fish_frame.size(),100000.));
+//std::vector<double> matrix(my_fish_vector.size(), std::vector<double>(my_fish_frame.size(),100.0));
 //std::vector<double> vector1;
 //std::vector<double> vector2;
 for (int i = 0; i< my_fish_vector.size(); i++)
     { 
       for (int j = 0; j < my_fish_frame.size(); j++)
       {
-	//cout << "In loop..." << my_fish_frame[j].y_pos[0] << "   " <<my_fish_vector[i].y_pos.back()<< endl;
+	cout << "In loop..." << my_fish_frame[j].y_pos[0] << "   " <<my_fish_vector[i].y_pos.back()<< endl;
 	if (my_fish_frame[j].y_pos[0] >=my_fish_vector[i].y_pos.back()) 
-	   {
+	   {	
 	    matrix[i][j] = pow(my_fish_frame[j].y_pos[0] - my_fish_vector[i].y_pos.back(), 2) + pow(my_fish_frame[j].x_pos[0] - my_fish_vector[i].x_pos.back(), 2);
 	    cout << i<<"00000000000000000000000000000000"<<j<<" "<< sqrt(matrix[i][j])<< endl;
 	   }
 	  }
      } 
 for (int i = 0; i< my_fish_vector.size(); i++) { // identify the same fish
-	int min = *min_element(matrix[i].begin(), matrix[i].end());
-	min = *matrix[i].begin() - min;
+
+	//int min = *min_element(matrix[i].begin(), matrix[i].end());
+
+	int min = distance(matrix[i].begin(), min_element(matrix[i].begin(), matrix[i].end()));
+
+	//min = *matrix[i].begin() - min;
+
 	if (my_fish_frame[min].y_pos[0] >= my_fish_vector[i].y_pos.back()) {
+
 		my_fish_vector[i].y_pos.push_back(my_fish_frame[min].y_pos[0]);
 		my_fish_vector[i].x_pos.push_back(my_fish_frame[min].x_pos[0]);
 		my_fish_vector[i].length.push_back(my_fish_frame[min].length[0]);
 		my_fish_vector[i].width.push_back(my_fish_frame[min].width[0]);
+
 		my_fish_frame.erase(my_fish_frame.begin()+min);
+
 	}
+
 	}
 for (int j = 0; j< my_fish_frame.size(); j++) { // push the remaining fish
 	  my_fish_vector.push_back(my_fish_frame[j]);	
@@ -176,7 +186,7 @@ for (int j = 0; j< my_fish_frame.size(); j++) { // push the remaining fish
 }
 
 else{for (int j = 0; j< my_fish_frame.size(); j++) {
-	  cout << "Here2" << endl;
+
 	  my_fish_vector.push_back(my_fish_frame[j]);	
 	  }
 
