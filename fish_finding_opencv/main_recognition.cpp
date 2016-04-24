@@ -28,13 +28,13 @@ void update_fish_list();
 /** @function main */
 int main( int argc, char** argv )
 {
-  
-for(int frame_idx =21; frame_idx < 30; frame_idx++)
+  double calibration_factor = 0.04;
+for(int frame_idx =21; frame_idx < 31; frame_idx++)
   {
   int idx = frame_idx;
   ostringstream s;
   s << idx;
-  string str_filename = "stream3fish/videoframe" + s.str() + ".jpg";
+  string str_filename = argv[1]  + s.str() + ".jpg";
   string out_filename = "output" + s.str() + ".txt";
   char filename[] = "stream1fish/videoframe15.jpg";	
   /// Load source image and convert it to gray
@@ -72,13 +72,48 @@ cout << "-------------" << str_filename.c_str() << " ------------" <<endl;
   // Toy fish
   //FishClass fishy_fish(0.3,0.2,1.1,2.4);
   //my_fish_vector.push_back(fishy_fish);
+vector<double> mean_width_v;
+vector<double> mean_length_v;
 for (int k=0; k<my_fish_vector.size();k++)
 	{
+	double mean_width = 0.;
+	double mean_length = 0.;
 	for(int j=0; j<my_fish_vector[k].x_pos.size();j++)
-{
-cout << my_fish_vector[k].x_pos[j] << "  " << my_fish_vector[k].y_pos[j] <<"  " << my_fish_vector[k].width[j] << "  " << my_fish_vector[k].length[j] <<"  " << endl;
+	{
+	cout << my_fish_vector[k].x_pos[j] << "  " << my_fish_vector[k].y_pos[j] <<"  " << my_fish_vector[k].width[j] << "  " << my_fish_vector[k].length[j] <<"  " << endl;
+	if(my_fish_vector[k].width[j] < my_fish_vector[k].length[j])
+		{
+		mean_width+= my_fish_vector[k].width[j];
+		mean_length+=my_fish_vector[k].length[j];
+		}
+	else
+		{
+		mean_width+= my_fish_vector[k].length[j];
+		mean_length+=my_fish_vector[k].width[j];		
+		}
 }
+mean_width_v.push_back(calibration_factor * mean_width/my_fish_vector[k].x_pos.size());
+mean_length_v.push_back(calibration_factor * mean_length/my_fish_vector[k].x_pos.size());
 	}
+// Save fish measurements to file
+string out_filename = "fish_output.txt";
+ofstream output (out_filename.c_str());
+if (output.is_open()) 
+{
+	for(int k=0; k<mean_width_v.size();k++)
+	{
+		//output << to_string(my_fish_frame[k].width) << "," << to_string(my_fish_frame[k].length) << endl;
+		output <<  mean_width_v[k] << "," << mean_length_v[k] << endl;		
+	}
+}
+
+output.close();
+
+for (int k=0; k<mean_width_v.size();k++)
+{
+	cout << "Fish " << k+1 << ": width " << mean_width_v[k] << "   ; length  " << mean_length_v[k] << endl;
+}
+
 
   return(0);
 }
