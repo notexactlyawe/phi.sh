@@ -11,13 +11,11 @@ def uuid_in_db(uuid):
 def index():
     return render_template('index.html')
 
-@app.route("/api/post/<uuid>", methods=['POST'])
-def post_data(uuid):
-    if not uuid_in_db(uuid):
-        return "Not allowed", 403
-    json = request.get_json(force=True)
-    print json
+@app.route("/api/post", methods=['POST'])
+def post_data():
+    json = request.data
+    print len(json)
     return "OK", 200
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(host='0.0.0.0', debug=True)
