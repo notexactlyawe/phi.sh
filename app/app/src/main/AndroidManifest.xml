@@ -3,6 +3,7 @@
     package="com.cameronmacleod.phish.phish">
 
     <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.INTERNET"/>
     <uses-feature android:name="android.hardware.camera" />
 
     <application
@@ -12,8 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".CameraFeed"
-                  android:label="@string/app_name"
-                  android:screenOrientation="landscape">
+                  android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

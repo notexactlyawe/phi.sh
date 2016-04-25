@@ -1,5 +1,12 @@
 package com.cameronmacleod.phish.phish;
 
+import java.io.BufferedOutputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.OutputStream;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.nio.ByteBuffer;
 import java.security.Permission;
 import java.util.Arrays;
 
@@ -7,6 +14,7 @@ import android.Manifest;
 import android.app.Activity;
 import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
 import android.graphics.ImageFormat;
 import android.graphics.SurfaceTexture;
 import android.hardware.camera2.CameraAccessException;
@@ -26,6 +34,7 @@ import android.os.Message;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.text.style.BackgroundColorSpan;
+import android.util.Base64;
 import android.util.Log;
 import android.util.Size;
 import android.view.Menu;
@@ -37,7 +46,38 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 
+import org.json.JSONObject;
+import org.opencv.android.BaseLoaderCallback;
+import org.opencv.android.LoaderCallbackInterface;
+import org.opencv.android.OpenCVLoader;
+import org.opencv.android.Utils;
+import org.opencv.core.Mat;
+import org.opencv.core.CvType;
+
 public class CameraFeed extends Activity {
+
+    private BaseLoaderCallback mLoaderCallback = new BaseLoaderCallback(this) {
+        @Override
+        public void onManagerConnected(int status) {
+            switch (status) {
+                case LoaderCallbackInterface.SUCCESS:
+                {
+                    Log.i(TAG, "OpenCV loaded successfully");
+                } break;
+                default:
+                {
+                    super.onManagerConnected(status);
+                } break;
+            }
+        }
+    };
+
+    @Override
+    public void onResume()
+    {
+        super.onResume();
+        OpenCVLoader.initAsync(OpenCVLoader.OPENCV_VERSION_3_1_0, this, mLoaderCallback);
+    }
 
     private final static String TAG = "SimpleCamera";
     private TextureView mTextureView = null;
@@ -120,15 +160,15 @@ public class CameraFeed extends Activity {
                 return;
             }
 
-            texture.setDefaultBufferSize(mPreviewSize.getWidth(), mPreviewSize.getHeight());
+            texture.setDefaultBufferSize(mPreviewSize.getWidth()/4, mPreviewSize.getHeight()/4);
             Surface surface = new Surface(texture);
 
             HandlerThread backgroundThread = new HandlerThread("CameraSend");
             backgroundThread.start();
             Handler backgroundHandler = new Handler(backgroundThread.getLooper());
 
-            imageReader = ImageReader.newInstance(mPreviewSize.getWidth(),
-                    mPreviewSize.getHeight(), ImageFormat.YUV_420_888, 2);
+            imageReader = ImageReader.newInstance(mPreviewSize.getWidth()/4,
+                    mPreviewSize.getHeight()/4, ImageFormat.YUV_420_888, 2);
             imageReader.setOnImageAvailableListener(onImAvListen, backgroundHandler);
 
             try {
@@ -167,12 +207,57 @@ public class CameraFeed extends Activity {
                     if(image == null) {
                         return;
                     }
+                    Mat yuv = new Mat(image.getHeight() + image.getHeight() / 2, image.getWidth(), CvType.CV_8UC1);
+                    ByteBuffer buffer = image.getPlanes()[0].getBuffer();
+                    final byte[] data = new byte[buffer.limit()];
+                    buffer.get(data);
+                    yuv.put(0, 0, data);
+
+                    Bitmap bmp = Bitmap.createBitmap(image.getWidth(),
+                            image.getHeight() + image.getHeight() / 2,
+                            Bitmap.Config.RGB_565);
+                    Utils.matToBitmap(yuv, bmp);
                     // From here we will send it to server
-                    Log.d("Image available", String.format("Size: {} {}",
+                    ByteArrayOutputStream stream = new ByteArrayOutputStream();
+                    bmp.compress(Bitmap.CompressFormat.PNG, 100, stream);
+                    byte[] byteArray = stream.toByteArray();
+                    sendToServer(byteArray);
+                    Log.d("Image available", String.format("Size: %1$d %1$d",
                             image.getWidth(), image.getHeight()));
                     image.close();
                 }
             };
+
+    public static void sendToServer(byte[] data) {
+        URL url = null;
+        HttpURLConnection conn = null;
+        try {
+            url = new URL("http://192.168.136.195:5000/api/post");
+        } catch (MalformedURLException e) {
+            Log.e("lkhlklkJ", "MalformedURLException");
+        }
+        try {
+            conn = (HttpURLConnection) url.openConnection();
+            conn.setDoOutput(true);
+            conn.setChunkedStreamingMode(0);
+            OutputStream out = new BufferedOutputStream(conn.getOutputStream());
+            out.write(data);
+        } catch (Exception e) {
+            Log.e("oh noes", "there was bad times " + e.getMessage());
+        } finally {
+            conn.disconnect();
+        }
+    }
+
+    public static String bytesToHex(byte[] bytes) {
+        char[] hexChars = new char[bytes.length * 2];
+        for ( int j = 0; j < bytes.length; j++ ) {
+            int v = bytes[j] & 0xFF;
+            hexChars[j * 2] = (char)bytes[v >>> 4];
+            hexChars[j * 2 + 1] = (char)bytes[v & 0x0F];
+        }
+        return new String(hexChars);
+    }
 
     private CameraCaptureSession.StateCallback mPreviewStateCallback =
             new CameraCaptureSession.StateCallback() {
@@ -222,7 +307,7 @@ public class CameraFeed extends Activity {
                         mPreviewSession.stopRepeating();
                     }
                     catch(CameraAccessException e) {
-                        Log.e("Oh shit", "We had a cameraaccessexception");
+                        Log.e("Oh shit", "We had a CameraAccessException");
                     }
                 }
             }
