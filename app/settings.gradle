@@ -1,1 +1,6 @@
 include ':app'
+
+def projectDialogsDir = file('openCVLibrary310')
+def rootProjectDescriptor = settings.rootProject
+settings.createProjectDescriptor(rootProjectDescriptor, 'openCVLibrary310', projectDialogsDir)
+include ':openCVLibrary310'
