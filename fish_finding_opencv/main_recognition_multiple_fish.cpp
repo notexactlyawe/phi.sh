@@ -29,12 +29,12 @@ void update_fish_list();
 int main( int argc, char** argv )
 {
   double calibration_factor = 0.04;
-for(int frame_idx =21; frame_idx < 31; frame_idx++)
+for(int frame_idx =33; frame_idx < 34; frame_idx++)
   {
   int idx = frame_idx;
   ostringstream s;
   s << idx;
-  string str_filename = argv[1]  + s.str() + ".jpg";
+  string str_filename = "stream3fish/videoframe"  + s.str() + ".jpg";
   string out_filename = "output" + s.str() + ".txt";
   char filename[] = "stream1fish/videoframe15.jpg";	
   /// Load source image and convert it to gray
@@ -49,8 +49,8 @@ cout << "-------------" << str_filename.c_str() << " ------------" <<endl;
   namedWindow( source_window, CV_WINDOW_AUTOSIZE );
   imshow( source_window, src );
 
-  //createTrackbar( " Threshold:", "Source", &thresh, max_thresh, thresh_callback );
-  //waitKey(0);
+  createTrackbar( " Threshold:", "Source", &thresh, max_thresh, thresh_callback );
+  waitKey(0);
   thresh_callback( 0, 0);
   update_fish_list();
 
@@ -100,18 +100,19 @@ string out_filename = "fish_output.txt";
 ofstream output (out_filename.c_str());
 if (output.is_open()) 
 {
+	output <<  "mean_width (cm)" << ", " << "mean_length (cm)" << ", " << "weight (gram)" << endl;	
 	for(int k=0; k<mean_width_v.size();k++)
 	{
 		//output << to_string(my_fish_frame[k].width) << "," << to_string(my_fish_frame[k].length) << endl;
-		output <<  mean_width_v[k] << "," << mean_length_v[k] << endl;		
+		output <<  mean_width_v[k] << ", " << mean_length_v[k] << ", "<<pow(0.4*mean_length_v[k],2.5)*(0.1)  << endl;		
 	}
 }
 
 output.close();
-
+cout << "--------------------- Summary of detected fish ---------------------" <<endl;
 for (int k=0; k<mean_width_v.size();k++)
 {
-	cout << "Fish " << k+1 << ": width " << mean_width_v[k] << "   ; length  " << mean_length_v[k] << endl;
+	cout << "Fish " << k+1 << ": width " << mean_width_v[k] << "cm   ; length  " << mean_length_v[k] << "cm   ; weight  " << pow(0.4*mean_length_v[k],2.5)*(0.1) << "g"<< endl;
 }
 
 
